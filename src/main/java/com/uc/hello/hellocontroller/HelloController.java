@@ -2,8 +2,29 @@ package com.uc.hello.hellocontroller;
 
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 public class HelloController {
+
+    // Creating user class
+    static class User{
+        String firstName;
+        String lastName;
+
+        User(){
+            firstName = "Anshik";
+            lastName = "Jaiswal";
+        }
+
+        public String getFirstName() {
+            return firstName;
+        }
+
+        public String getLastName(){
+            return lastName;
+        }
+    }
+
 
     // api will return hello message
     @RequestMapping(value = {"", "/"})
@@ -21,5 +42,11 @@ public class HelloController {
     @GetMapping("/prams/{name}")
     public String sayHelloParam(@PathVariable String name){
         return "Hello " + name + "!";
+    }
+
+    // Post mapping
+    @PostMapping("/post")
+    public String sayHello(@RequestBody User user){
+        return "Hello " + user.getFirstName() + " " + user.getLastName() + "!";
     }
 }
