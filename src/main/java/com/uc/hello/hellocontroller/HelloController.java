@@ -1,9 +1,6 @@
 package com.uc.hello.hellocontroller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloController {
@@ -14,9 +11,15 @@ public class HelloController {
         return "Hello from BridgeLabz.";
     }
 
+    // api will return hello with the query name provided by user
     @RequestMapping(value = {"/query"}, method = RequestMethod.GET)
     public String sayHelloWithName(@RequestParam(value = "name") String name){
         return "Hello " + name + "!";
     }
 
+    // api will return hello with the name used in link
+    @GetMapping("/prams/{name}")
+    public String sayHelloParam(@PathVariable String name){
+        return "Hello " + name + "!";
+    }
 }
