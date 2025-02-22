@@ -11,10 +11,6 @@ public class HelloController {
         String firstName;
         String lastName;
 
-        User(){
-            firstName = "Anshik";
-            lastName = "Jaiswal";
-        }
 
         public String getFirstName() {
             return firstName;
@@ -22,6 +18,14 @@ public class HelloController {
 
         public String getLastName(){
             return lastName;
+        }
+
+        public void setFirstName(String firstName){
+            this.firstName = firstName;
+        }
+
+        public void setLastName(String firstName){
+            this.firstName = firstName;
         }
     }
 
@@ -48,5 +52,13 @@ public class HelloController {
     @PostMapping("/post")
     public String sayHello(@RequestBody User user){
         return "Hello " + user.getFirstName() + " " + user.getLastName() + "!";
+    }
+
+    // Maps HTTP PUT requests to /put/{firstName} to this method
+    @PutMapping("/put/{firstName}")
+    public String sayHello(@PathVariable String firstName,
+                           @RequestParam(value = "lastName") String lastName) {
+        // Returns a greeting message with the provided first and last name
+        return "Hello " + firstName + " " + lastName + "!";
     }
 }
